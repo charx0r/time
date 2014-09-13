@@ -1,0 +1,4 @@
+name = ITETAPS Timesheet Creation Customizations
+description = This module customizes and alters the timesheet creation form
+core = 7.x
+package = ITETAPS

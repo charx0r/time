@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * Implementation of hook_form_alter().
+ * 
+ * Used to manipulate Drupal form.
+ */
+function it_timesheet_create_form_alter(&$form, &$form_state, $form_id) {
+  if($form_id == "timesheet_node_form") {
+//    dpm($form);
+    $form['#after_build'][] = 'it_timesheet_create_after_build';
+  }
+}
+
+function it_timesheet_create_after_build($form, &$form_state) {
+  $field = 'field_timesheet_week_of';
+//dpm($form[$field]);
+  $form[$field]['und'][0]['value']['#attributes']['disabled'] = 'disabled';
+  $form_state['values'][$field]['und'][0]['value'] = $form[$field]['und'][0]['value']['#default_value'];
+  return $form;
+}
