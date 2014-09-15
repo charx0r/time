@@ -1,0 +1,4 @@
+name = ITETAPS General Cusotmizations
+description = This is module meant for misc and very universal form alters, menu hooks and overrides
+core = 7.x
+package = ITETAPS

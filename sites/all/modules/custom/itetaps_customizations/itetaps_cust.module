@@ -1,0 +1,9 @@
+<?php
+
+function itetaps_cust_form_alter(&$form, $form_state, $form_id) {
+    if (in_array($form_id, array('user_login_form', 'user_login_block'))) {
+// now alter uname field to add placeholder text.
+      $form['name']['#attributes'] = array('placeholder' => t('Username'));
+      $form['pass']['#attributes'] = array('placeholder' => t('Password'));
+    }
+}
