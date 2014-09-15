@@ -5,5 +5,7 @@ function itetaps_cust_form_alter(&$form, $form_state, $form_id) {
 // now alter uname field to add placeholder text.
       $form['name']['#attributes'] = array('placeholder' => t('Username'));
       $form['pass']['#attributes'] = array('placeholder' => t('Password'));
+      $form['links']['#weight'] = 49;
+      $form['actions']['#weight']= 48;
     }
 }
