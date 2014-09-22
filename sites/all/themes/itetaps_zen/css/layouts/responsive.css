@@ -67,15 +67,27 @@
 @media all and (min-width: 480px) {
   #main {
     /* Move all the children of #main down to make room. */
-    padding-top: 3em;
+    padding-top: 2em;
     position: relative;
   }
   #navigation {
     /* Move the navbar up inside #main's padding. */
-    position: absolute;
-    top: 0;
-    height: 3em;
+    /*position: absolute;
+    top: 0;*/
+    padding: 0px 20px;
+    background: #f5f5f5;
+    min-height: 45px;
+    border-bottom: 1px solid #ccc;
     width: 100%;
+  }
+  #navigation .links li a {
+    color:#333;
+    text-decoration: none;
+    font-size: 14px;
+    padding:0px 10px;
+  }
+  #navigation .links li:hover {
+  background:#eaeaea;
   }
 }
 
@@ -239,6 +251,8 @@
     width: 20%;
     margin-left: 80%;
     margin-right: -100%;
+    background:#f9f9f9;
+    border:1px solid #205081;
   }
 
   /**

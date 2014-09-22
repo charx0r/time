@@ -7,8 +7,12 @@
  */
 function it_timesheet_create_form_alter(&$form, &$form_state, $form_id) {
   if($form_id == "timesheet_node_form") {
-//    dpm($form);
-    $form['#after_build'][] = 'it_timesheet_create_after_build';
+    //dpm($form);
+    $form['revision_information']['#access'] = FALSE;
+    $form['actions']['submit']['#value'] = 'Submit for Review';
+    $form['actions']['draft']['#value'] = 'Add to Timesheet';
+    $form['actions']['submit']['#weight'] = '0';
+//    $form['#after_build'][] = 'it_timesheet_create_after_build';
   }
 }
 
@@ -16,6 +20,7 @@ function it_timesheet_create_after_build($form, &$form_state) {
   $field = 'field_timesheet_week_of';
 //dpm($form[$field]);
   $form[$field]['und'][0]['value']['#attributes']['disabled'] = 'disabled';
-  $form_state['values'][$field]['und'][0]['value'] = $form[$field]['und'][0]['value']['#default_value'];
+//dpm($form_state);dpm($form);
+  //$form_state['values'][$field]['und'][0]['value'] = $form[$field]['und'][0]['value']['#default_value'];
   return $form;
 }

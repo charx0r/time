@@ -18,6 +18,10 @@ Drupal.behaviors.my_custom_behavior = {
   attach: function(context, settings) {
 
     // Place your code here.
+    $('#timesheet-node-form .form-item-field-timesheet-week-of-und-0-value-date .date-date input').attr('readonly', 'readonly');
+    $('#timesheet-node-form .form-item-field-timesheet-week-of-und-0-value2-date .date-date input').attr('readonly', 'readonly');
+    $('#timesheet-node-form input.date-clear').attr('readonly', 'readonly');
+    console.log("asd");
 
   }
 };

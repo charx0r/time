@@ -194,6 +194,7 @@ p,
 pre {
   margin: 1.5em 0;
 }
+p{margin:0px;}
 blockquote {
   /* Also indent the quote on both sides. */
   margin: 1.5em 30px;
@@ -567,9 +568,9 @@ table {
   border: none;
   text-indent: 0;
   position:relative;
-  left: 0;
+  /*left: 0;*/
   text-shadow: none;
-  top: -4px;
+  /*top: -4px;*/
   margin-bottom:0px;
 }
 .form-field-type-datetime fieldset.form-wrapper legend span {
@@ -580,7 +581,6 @@ table {
   border: none;
   padding: 0;
   position:relative;
-  top:-9px;
 }
 .form-field-type-datetime fieldset.form-wrapper .description {
   display:none;
@@ -592,6 +592,7 @@ div.pane-form fieldset.form-wrapper .field-type-datetime {
   margin-bottom: -12px;
 }
 /* Width pf pages*/
-#page {max-width:100%!important;background:#fafafa;min-height:550px;}
+#page {max-width:100%!important;background:#fff;min-height:550px;}
+.not-logged-in #page {background:#fafafa;}
 #main {max-width:1200px;margin-right:auto;margin-left:auto;}
 #header {background:#205081;}

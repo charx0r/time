@@ -57,7 +57,12 @@ function itetaps_zen_preprocess_page(&$variables, $hook) {
   if (isset($variables['page']['content']['system_main']['default_message'])) {
            unset($variables['page']['content']['system_main']['default_message']);
            drupal_set_title('');
-    }
+  }
+  if (isset($variables['node'])) {
+    // If the content type's machine name is "my_machine_name" the file
+    // name will be "page--my-machine-name.tpl.php".
+    $variables['theme_hook_suggestions'][] = 'page__' . $variables['node']->type;
+  }
 }
 
 /**
