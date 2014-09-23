@@ -10,7 +10,7 @@ function it_timesheet_create_form_alter(&$form, &$form_state, $form_id) {
     //dpm($form);
     $form['revision_information']['#access'] = FALSE;
     $form['actions']['submit']['#value'] = 'Submit for Review';
-    $form['actions']['draft']['#value'] = 'Add to Timesheet';
+//    $form['actions']['draft']['#value'] = 'Add to Timesheet';
     $form['actions']['submit']['#weight'] = '0';
 //    $form['#after_build'][] = 'it_timesheet_create_after_build';
   }
