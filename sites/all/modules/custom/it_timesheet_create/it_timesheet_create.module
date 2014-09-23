@@ -7,10 +7,100 @@
  */
 function it_timesheet_create_form_alter(&$form, &$form_state, $form_id) {
   if($form_id == "timesheet_node_form") {
-    //dpm($form);
+    //set access to false for revision information, DON'T unset this as it is required by Workflow module for moderation of timesheets
     $form['revision_information']['#access'] = FALSE;
-    $form['actions']['submit']['#value'] = 'Submit for Review';
-//    $form['actions']['draft']['#value'] = 'Add to Timesheet';
+    //dpm($form);
+    $monday_date = strtotime($form['field_timesheet_week_of']['und']['0']['#default_value']['value']);
+    //dpm(strtotime('now'));
+    //dpm(date('Y-m-j',strtotime('+1 day', $monday_date)));
+    //dpm(date('Y-m-j', strtotime('+2 day', $monday_date)));
+    //Disabling timesheet fields for future dates and remove default hours for future
+    $form['field_saturday_start_time']['und'][0]['value']['#default_value'] = '';
+    $form['field_saturday_end_time']['und'][0]['value']['#default_value'] = '';
+    $form['field_sunday_start_time']['und'][0]['value']['#default_value'] = '';
+    $form['field_sunday_end_time']['und'][0]['value']['#default_value'] = '';
+    $form['field_saturday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+    $form['field_saturday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+    $form['field_sunday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+    $form['field_sunday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+    //Today is monday
+    if(strtotime('now')< strtotime('+1 day', $monday_date)) {
+      $form['field_tuesday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_tuesday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_wednesday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_wednesday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_thursday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_thursday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_friday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_friday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      
+      $form['field_tuesday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_tuesday_end_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_wednesday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_wednesday_end_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_thursday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_thursday_end_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_friday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_friday_end_time']['und'][0]['value']['#default_value'] = '';
+    }
+    //today is tuesday
+    else if(strtotime('now') > strtotime('+1 day', $monday_date) && strtotime('now') < strtotime('+2 day', $monday_date)){
+      $form['field_wednesday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_wednesday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_thursday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_thursday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_friday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_friday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      
+      $form['field_wednesday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_wednesday_end_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_thursday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_thursday_end_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_friday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_friday_end_time']['und'][0]['value']['#default_value'] = '';
+    }
+    elseif (strtotime('now') > strtotime('+2 day', $monday_date) && strtotime('now') < strtotime('+3 day', $monday_date)) {
+      $form['field_thursday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_thursday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_friday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_friday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      
+      $form['field_thursday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_thursday_end_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_friday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_friday_end_time']['und'][0]['value']['#default_value'] = '';
+    }
+    elseif (strtotime('now') > strtotime('+3 day', $monday_date) && strtotime('now') < strtotime('+4 day', $monday_date)) {
+      $form['field_friday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_friday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_saturday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_saturday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_sunday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_sunday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_friday_start_time']['und'][0]['value']['#default_value'] = '';
+      $form['field_friday_end_time']['und'][0]['value']['#default_value'] = '';
+    }
+    elseif(strtotime('now') > strtotime('+4 day', $monday_date)) {
+      $form['field_saturday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_saturday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_sunday_start_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+      $form['field_sunday_end_time']['und'][0]['value']['#attributes']['disabled'] = TRUE;
+    }
+    
+    //Settings min and max dates for submissions to manager to keep open
+    $date_friday = strtotime('+4 day', $monday_date);
+    $date_tuesday = strtotime('+8 day', $monday_date);
+    
+    if(strtotime('now') >  $date_friday && strtotime('now') < $date_tuesday){
+      $form['field_timesheet_status']['und']['#default_value']= '3';
+    }
+    else {
+      $form['field_timesheet_status']['und']['#default_value']= '2';
+      unset($form['field_timesheet_status']['und']['#options']['3']);
+    }
+    
+    //Change the submit button text
+    $form['actions']['submit']['#value'] = 'Save Timesheet';
     $form['actions']['submit']['#weight'] = '0';
 //    $form['#after_build'][] = 'it_timesheet_create_after_build';
   }
