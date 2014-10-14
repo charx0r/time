@@ -114,3 +114,9 @@ function it_timesheet_create_after_build($form, &$form_state) {
   //$form_state['values'][$field]['und'][0]['value'] = $form[$field]['und'][0]['value']['#default_value'];
   return $form;
 }
+
+/**
+ * Implementation of hook_cron().
+ * 
+ * Cron implementation of creating 
+ */
